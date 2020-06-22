@@ -3,7 +3,6 @@ import './App.css';
 import Navbar from '../components/Navbar';
 import SearchBar from '../components/SearchBar';
 import PokeCard from '../components/PokeCard';
-import pokeAPI from '../utils/pokeAPI';
 import { Provider } from 'react-redux';
 import store from '../utils/store'
 

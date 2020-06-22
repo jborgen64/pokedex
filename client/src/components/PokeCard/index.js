@@ -1,30 +1,45 @@
-import React, { useEffect } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchPoke } from '../../utils/actions/pokeActions'
-import { FETCH_POKEMON } from '../../utils/actions/type';
 
-function PokeCard() {
+class PokeCard extends Component {
 
-  useEffect(() => {
-    fetchPoke()
-  }, [])
+  async componentWillMount() {
+    await this.props.fetchPoke();
+  }
 
+  render() {
 
-  return (
-    <div className="card mb-3" style={{ "max-width": "540px" }}>
-      <div className="row no-gutters">
-        <div className="col-md-4">
-          <img src='' className="card-img" alt="..." />
-        </div>
-        <div className="col-md-8">
-          <div className="card-body">
-            <h5 className="card-title">name:  </h5>
-            <p className="card-text">type: </p>
+    const types = this.props.pokemon.types[0].type.name
+    console.log(types)
+
+    return (
+
+        <div className="card mb-3" style={{ "maxWidth": "540px" }}>
+        <div className="row no-gutters">
+          <div className="col-md-4">
+            <img src='' className="card-img" alt="..." />
+          </div>
+          <div className="col-md-8">
+            <div className="card-body">
+              <h5 className="card-title">name: {this.props.pokemon.name} </h5>
+              <p className="card-text">type: {types} </p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  )
+      )
+  }
 }
 
-export default connect(null, { fetchPoke }) (PokeCard);
+PokeCard.propTypes = {
+  fetchPoke: PropTypes.func.isRequired,
+  pokemon: PropTypes.any.isRequired
+}
+
+const mapStateToProps = state => ({
+  pokemon: state.pokemon.item
+})
+
+export default connect(mapStateToProps, { fetchPoke })(PokeCard);
