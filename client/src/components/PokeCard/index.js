@@ -5,9 +5,9 @@ import { fetchPoke } from '../../utils/actions/pokeActions'
 
 class PokeCard extends Component {
 
-  async componentWillMount() {
-    await this.props.fetchPoke();
-  }
+  // async componentWillMount() {
+  //   await this.props.fetchPoke();
+  // }
 
   render() {
 
@@ -19,7 +19,7 @@ class PokeCard extends Component {
         <div className="card mb-3" style={{ "maxWidth": "540px" }}>
         <div className="row no-gutters">
           <div className="col-md-4">
-            <img src='' className="card-img" alt="..." />
+            <img src={this.props.pokemon.sprites.front_default} className="card-img" alt="..." />
           </div>
           <div className="col-md-8">
             <div className="card-body">
