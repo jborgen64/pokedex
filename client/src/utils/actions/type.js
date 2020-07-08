@@ -1,3 +1,0 @@
-export const FETCH_POKEMON = 'FETCH_POKEMON';
-
-export const SAVE_POKEMON = 'SAVE_POKEMON';

@@ -1,43 +1,47 @@
 import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+import { fetchPoke } from '../redux/actions/pokeAction'
 import './App.css';
 import Navbar from '../components/Navbar';
 import SearchBar from '../components/SearchBar';
 import PokeCard from '../components/PokeCard';
-import { Provider } from 'react-redux';
-import store from '../utils/store'
-import { fetchPoke } from '../utils/actions/pokeActions'
+import PokeList from '../components/PokeList';
+
 
 function App() {
 
-  // function searchPoke(search) {
-  //   console.log("search pokemon...", search);
-  //   fetchPoke(search)
-  //     .then((res) => {
-  //       console.log("POKEBACK:", res.data);
-  //       // setState(res.data);
-  //     })
-  //     .catch((err) => console.log("ERRUH:", err));
-  // }
-
-  // //submits search form
-  // const handleFormSubmit = (event) => {
-  //   event.preventDefault();
-  //   const search = event.target.value;
-  //   searchPoke(search);
-  //   console.log(search);
-  // };
+  useEffect(() => {
+    
+    fetchPoke();
+  
+   }, [])
+ 
 
   return (
-    <Provider store={store}>
-    <div className="App">
-      <Navbar />
-      <br />
-      <SearchBar />
-      <br />
-      <PokeCard />
-    </div>
-    </Provider>
+      <div className="App">
+        <Navbar />
+        <br />
+        <SearchBar />
+        <br />
+        <PokeList />
+        <PokeCard />
+      </div>
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    pokeData: state.fetchedPoke.data
+  }
+}
+
+
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchPoke: () => dispatch(fetchPoke())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
+
+

@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
 import pokeReducer from './pokeReducer';
+import searchReducer from './searchReducer';
 
 export default combineReducers({
-    pokemon: pokeReducer
+    searchedPoke: searchReducer,
+    fetchedPoke: pokeReducer
 });
