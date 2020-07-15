@@ -1,4 +1,4 @@
-import {  SEARCH_POKE_REQUEST, SEARCH_POKE_SUCCESS, SEARCH_POKE_FAILURE } from './type';
+import { SEARCH_POKE_REQUEST, SEARCH_POKE_SUCCESS, SEARCH_POKE_FAILURE, SEARCH_POKE_CLOSE } from './type';
 
 export const searchPokeRequest = () => {
     return {
@@ -19,20 +19,33 @@ const searchPokeFailure = error => {
         payload: error
     }
 }
+export const searchPokeClose = () => {
+    return {
+        type: SEARCH_POKE_CLOSE
+      
+    }
+}
 
 export const searchPoke = (search) => {
     return (dispatch) => {
-        console.log('searching ' + search )
+        console.log('searching ' + search)
         dispatch(searchPokeRequest)
         fetch(`https://pokeapi.co/api/v2/pokemon/${search}`)
             .then(res => res.json())
-            .then(response => { 
+            .then(response => {
                 const data = response
                 dispatch(searchPokeSuccess(data))
-             })
+            })
             .catch(error => {
                 const errorMsg = error.message
                 dispatch(searchPokeFailure(errorMsg))
             })
     };
+}
+
+export const closePoke = () => {
+    return (dispatch) => {
+        console.log('closing search')
+        dispatch(searchPokeClose)
+    }
 }

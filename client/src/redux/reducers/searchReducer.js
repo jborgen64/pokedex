@@ -1,48 +1,27 @@
-import {  SEARCH_POKE_REQUEST, SEARCH_POKE_SUCCESS, SEARCH_POKE_FAILURE } from '../actions/type';
-
-// const initialState = {
-
-//     item: {
-//         'id': 0,
-//         'name': '',
-//         'height': 0,
-//         'sprites': {
-//             'default': ''
-//         },
-//         'types': [
-//             {
-//                 'slot': 0,
-//                 'type': {
-//                     'name': '',
-//                     'url': ''
-//                 }
-//             }
-//         ]
-
-//     }
-// }
+import { SEARCH_POKE_CLOSE, SEARCH_POKE_REQUEST, SEARCH_POKE_SUCCESS, SEARCH_POKE_FAILURE } from '../actions/type';
 
 const initialState = {
     loading: false,
-    data:  {
-                'id': 0,
-                'name': '',
-                'height': 0,
-                'sprites': {
-                    'default': ''
-                },
-                'types': [
-                    {
-                        'slot': 0,
-                        'type': {
-                            'name': '',
-                            'url': ''
-                        }
-                    }
-                ]
-        
-            },
-    
+    search: false,
+    data: {
+        'id': 0,
+        'name': '',
+        'height': 0,
+        'sprites': {
+            'default': ''
+        },
+        'types': [
+            {
+                'slot': 0,
+                'type': {
+                    'name': '',
+                    'url': ''
+                }
+            }
+        ]
+
+    },
+
     error: ''
 }
 
@@ -52,13 +31,14 @@ export default function (state = initialState, action) {
             console.log('search requested')
             return {
                 ...state,
-                loading: true
+                loading: true,
             }
         case SEARCH_POKE_SUCCESS:
             console.log('search success')
             return {
                 loading: false,
                 data: action.payload,
+                search: true,
                 error: ''
             }
         case SEARCH_POKE_FAILURE:
@@ -67,6 +47,13 @@ export default function (state = initialState, action) {
                 loading: false,
                 data: [],
                 error: action.payload
+            }
+        case SEARCH_POKE_CLOSE:
+            console.log('search close from reducer')
+            return {
+                ...state,
+                search: false
+                
             }
 
         default: return state;

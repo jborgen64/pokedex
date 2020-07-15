@@ -21,10 +21,10 @@ const fetchPokeFailure = error => {
     }
 }
 
-export const fetchPoke = () => {
+export const fetchPoke = (url) => {
     return (dispatch) => {
         dispatch(fetchPokeRequest)
-        fetch(`https://pokeapi.co/api/v2/pokemon`)
+        fetch(url)
             .then(res => res.json())
             .then(response => { 
                 const data = response

@@ -6,32 +6,29 @@ import Navbar from '../components/Navbar';
 import SearchBar from '../components/SearchBar';
 import PokeCard from '../components/PokeCard';
 import PokeList from '../components/PokeList';
+import Wrapper from '../components/Wrapper'
 
 
-function App() {
+function App({ searchedPoke }) {
 
-  useEffect(() => {
-    
-    fetchPoke();
-  
-   }, [])
- 
 
   return (
-      <div className="App">
-        <Navbar />
-        <br />
-        <SearchBar />
-        <br />
-        <PokeList />
-        <PokeCard />
-      </div>
+    <div className="App">
+      <Navbar />
+      <br />
+      <SearchBar />
+      <br />
+      <Wrapper>
+        { !searchedPoke.search ? <PokeList />  :  <PokeCard /> }
+      </Wrapper>
+    </div>
   );
 }
 
 const mapStateToProps = state => {
   return {
-    pokeData: state.fetchedPoke.data
+    pokeData: state.fetchedPoke.data,
+    searchedPoke: state.searchedPoke
   }
 }
 

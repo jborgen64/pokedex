@@ -33,7 +33,7 @@ class SearchBar extends Component {
 
     return (
       <form onSubmit={this.onSubmit}>
-        <div className="form-group">
+        <div className="form-group" style={{'margin': '20px'}}>
           <h1>Search Pokemon</h1>
           <input type="text" className="form-control" onChange={this.onChange} aria-describedby="pokeSearch" />
         </div>
