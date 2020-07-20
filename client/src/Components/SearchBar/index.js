@@ -1,6 +1,6 @@
-import React, { Component, useState } from './node_modules/react';
-import PropTypes from './node_modules/prop-types';
-import { connect } from './node_modules/react-redux';
+import React, { Component, useState } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { searchPoke } from '../../redux/actions/searchAction'
 
 class SearchBar extends Component {

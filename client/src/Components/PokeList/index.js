@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from './node_modules/react';
-import { connect } from './node_modules/react-redux';
+import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 import { fetchPoke } from '../../redux/actions/pokeAction'
 import { searchPoke } from '../../redux/actions/searchAction';
 import './pokeList.css'
