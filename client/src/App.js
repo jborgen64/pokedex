@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { fetchPoke } from './redux/actions/pokeAction'
 import './App.css';
-import Navbar from './components/Navbar';
-import SearchBar from './components/SearchBar';
-import PokeCard from './components/PokeCard';
-import PokeList from './components/PokeList';
-import Wrapper from './components/Wrapper'
+import Navbar from './Components/Navbar';
+import SearchBar from './Components/SearchBar';
+import PokeCard from './Components/PokeCard';
+import PokeList from './Components/PokeList';
+import Wrapper from './Components/Wrapper'
 
 
 function App({ searchedPoke }) {
